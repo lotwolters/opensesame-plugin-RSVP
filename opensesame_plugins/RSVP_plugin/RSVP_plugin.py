@@ -28,14 +28,16 @@ class RSVP_plugin(item):
 			Resets plug-in to initial values.
 		"""
 
-		self.var._targets = u'4;8'
-		self.var._distractors = u'q;w;e;r;t;y;u;i;o;p;a;s;d;f;g;h'
-		self.var._ntargets = 2
-		self.var._ndistractors = 15
-		self.var._target_positions = u'5;7'
+		self.var._type = u'images'
+		self.var._targets = u''
+		self.var._distractors = u''
+		# self.var._targets_txt = u'4;8'
+		# self.var._distractors_txt = u'q;w;e;r;t;y;u;i;o;p;a;s;d;f;g;h'
+		self.var._ntargets = 3
+		self.var._ndistractors = 3
+		self.var._target_positions = u'1;2;4'
 		self.var._stimdur = 100
 		self.var._fixdur = 1000
-		# self.var._event_handler = u'print(10)'
 
 	def prepare(self):
 
@@ -46,31 +48,69 @@ class RSVP_plugin(item):
 		targets = self.var._targets.split(';')
 		distractors = self.var._distractors.split(';')
 
-		self.cnvs_stream = {}
-		for i in range(self.var._ndistractors + self.var._ntargets):
-			if i in target_positions:
-				t = targets.pop(0)
-				self.cnvs_stream[str(i)] = canvas(self.experiment)
-				self.cnvs_stream[str(i)].text(
-				"<span style='color:rgba(0,0,0,.01)'>gb</span>{}<span style='color:rgba(0,0,0,.01)'>gb</span>".format(t),
-				font_size=48,
-				color=u'rgb(190,190,190)',
-				x=0,
-				y=0
-				)
-				self.var.set('stim_%d' % i, t)
 
-			else:
-				d = distractors.pop(0)
-				self.cnvs_stream[str(i)] = canvas(self.experiment)
-				self.cnvs_stream[str(i)].text(
-				"<span style='color:rgba(0,0,0,.01)'>gb</span>{}<span style='color:rgba(0,0,0,.01)'>gb</span>".format(d),
-				font_size=48,
-				color=u'rgb(190,190,190)',
-				x=0,
-				y=0
-				)
-				self.var.set('stim_%d' % i, d)
+		if self.var._type == u'text':
+			self.var._targets_txt = u'4;8'
+			self.var._distractors_txt = u'q;w;e;r;t;y;u;i;o;p;a;s;d;f;g;h'
+			self.cnvs_stream = {}
+				for i in range(self.var._ndistractors + self.var._ntargets):
+					if i in target_positions:
+						t = targets.pop(0)
+						self.cnvs_stream[str(i)] = canvas(self.experiment)
+						self.cnvs_stream[str(i)].text(
+						"<span style='color:rgba(0,0,0,.01)'>gb</span>{}<span style='color:rgba(0,0,0,.01)'>gb</span>".format(t),
+						font_size=48,
+						color=u'rgb(190,190,190)',
+						x=0,
+						y=0
+						)
+						self.var.set('stim_%d' % i, t)
+
+					else:
+						d = distractors.pop(0)
+						self.cnvs_stream[str(i)] = canvas(self.experiment)
+						self.cnvs_stream[str(i)].text(
+						"<span style='color:rgba(0,0,0,.01)'>gb</span>{}<span style='color:rgba(0,0,0,.01)'>gb</span>".format(d),
+						font_size=48,
+						color=u'rgb(190,190,190)',
+						x=0,
+						y=0
+						)
+						self.var.set('stim_%d' % i, t)
+			
+		if self.var._type == u'image':
+			self.var._targets = u'weird1.jpeg;weird2.jpeg;weird3.jpeg'
+			self.var._distractors = u'weird4.jpeg;weird5.jpeg;weird6.jpeg'
+			self.cnvs_stream = {}
+				for i in range(self.var._ndistractors + self.var._ntargets):
+					if i in target_positions:
+						t = targets.pop(0)
+						self.cnvs_stream[str(i)] = canvas(self.experiment)
+						self.cnvs_stream[str(i)].image(self.experiment.pool[t])
+						self.var.set('stim_%d' % i, t)
+
+					else:
+						d = distractors.pop(0)
+						self.cnvs_stream[str(i)] = canvas(self.experiment)
+						self.cnvs_stream[str(i)].image(self.experiment.pool[d])
+						self.var.set('stim_%d' % i, d)
+		
+
+
+# SEMI-ORIGINAL:
+		# self.cnvs_stream = {}
+		# for i in range(self.var._ndistractors + self.var._ntargets):
+		# 	if i in target_positions:
+		# 		t = targets.pop(0)
+		# 		self.cnvs_stream[str(i)] = canvas(self.experiment)
+		# 		self.cnvs_stream[str(i)].image(self.experiment.pool[t])
+		# 		self.var.set('stim_%d' % i, t)
+
+		# 	else:
+		# 		d = distractors.pop(0)
+		# 		self.cnvs_stream[str(i)] = canvas(self.experiment)
+		# 		self.cnvs_stream[str(i)].image(self.experiment.pool[d])
+		# 		self.var.set('stim_%d' % i, d)
 
 		# create fixation canvas	
 		self.cnvs_fix = canvas(self.experiment)
