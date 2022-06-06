@@ -11,12 +11,15 @@ manipulated (Chen et al., 2021).
 The project included research into the implementation of pupil size measurements in CIT and
 the development of open source tools (preseting stimuli (text/images) on the screen, 
 preparation of the stimuli, and analysis of the data) to be used in CIT. The project is 
-funded by Police & Science. 
+funded by Police & Science (Politie & Wetenschap). 
 
 
 ## Usage
 
-Todo
+The GUI shows several elements that can be adjusted to one's wishes. With the image below,
+you will see a preview of the GUI.
+
+![GUI](/Users/lotwolters/Library/CloudStorage/OneDrive-Personal/ACN/Internship/GUI.png)
 
 ## License
 
