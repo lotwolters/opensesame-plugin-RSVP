@@ -28,8 +28,11 @@ the following features:
 The plugin works for OpenSesame, so make sure to have installed [OpenSesame](https://osdoc.cogsci.nl/3.2/download) on your computer.
 
 Next, install the RSVP plugin in OpenSesame as follows:
-> import pip
-> pip.main(['install','opensesame-plugin-rsvp'])
+'''
+import pip
+pip.main(['instal', 'opensesame-plugin-rsvp'])
+'''
+
 
 
 ## Usage
