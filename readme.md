@@ -17,6 +17,8 @@ funded by Police & Science (Politie & Wetenschap).
 ## Usage
 TODO: insert image of GUI
 
+![GUI](/GUI.png)
+
 The GUI shows several elements that can be adjusted to one's wishes. The following elements
 can be adjusted:
 * mode (text or images)
