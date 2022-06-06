@@ -61,7 +61,7 @@ name of this textfile can be filled in in the widget. For example, the file can 
 goes for the distractors.
 
 #### Image stimuli
-If the stimuli are **images**, one should **always** add all images of the experiment to the **filepool**. 
+If the stimuli are **images**, one should **always add all images** of the experiment to the **filepool**. 
 In addition, a textfile can be created with a list of all targets. This textfile contains all filenams of 
 the images and these files are separated by an enter. The textfile is also added to the filepool and can 
 be referred to in the widget, instead of listing all files separated by a semicolon. This is the same for 
